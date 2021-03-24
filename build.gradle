@@ -1,0 +1,48 @@
+plugins {
+    id "java"
+    id "com.diffplug.spotless" version "5.10.1"
+}
+
+group 'com.psamatt'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    lombokVersion = "1.18.18"
+    junitVersion = "5.6.0"
+}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    testImplementation "org.assertj:assertj-core:3.19.0"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+
+    testCompile "org.mockito:mockito-junit-jupiter:2.28.2"
+
+    testCompile "org.mockito:mockito-core:2.28.2"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+spotless {
+    java {
+        importOrder()
+        removeUnusedImports()
+        indentWithSpaces(4)
+        googleJavaFormat("1.9").aosp()
+    }
+}
+
+build.dependsOn 'spotlessApply'

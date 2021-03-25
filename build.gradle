@@ -12,12 +12,14 @@ repositories {
 
 ext {
     lombokVersion = "1.18.18"
-    junitVersion = "5.6.0"
+    slf4jVersion = "1.7.30"
+    junitVersion = "5.7.1"
 }
 
 dependencies {
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
 
     testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
@@ -25,10 +27,11 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
     testImplementation "org.assertj:assertj-core:3.19.0"
+
+    testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
 
     testCompile "org.mockito:mockito-junit-jupiter:2.28.2"
-
     testCompile "org.mockito:mockito-core:2.28.2"
 }
 

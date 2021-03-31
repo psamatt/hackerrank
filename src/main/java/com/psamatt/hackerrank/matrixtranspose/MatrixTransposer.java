@@ -2,7 +2,7 @@ package com.psamatt.hackerrank.matrixtranspose;
 
 public class MatrixTransposer {
 
-    public int[][] transpose(int[][] matrix) {
+    public void transpose(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 1; j < matrix.length; j++) {
                 if (j > i) {
@@ -12,6 +12,5 @@ public class MatrixTransposer {
                 }
             }
         }
-        return matrix;
     }
 }

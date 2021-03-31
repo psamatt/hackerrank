@@ -16,20 +16,20 @@ class MatrixTransposerTest {
 
     @Test
     void shouldTransposeTwoByTwoSquare() {
-        int[][] actual = transposer.transpose(new int[][] {new int[] {1, 2}, new int[] {3, 4}});
+        int[][] matrix = {new int[] {1, 2}, new int[] {3, 4}};
 
-        assertThat(actual).isEqualTo(new int[][] {new int[] {1, 3}, new int[] {2, 4}});
+        transposer.transpose(matrix);
+
+        assertThat(matrix).isEqualTo(new int[][] {new int[] {1, 3}, new int[] {2, 4}});
     }
 
     @Test
     void shouldTransposeThreeByThreeSquare() {
-        int[][] actual =
-                transposer.transpose(
-                        new int[][] {
-                            new int[] {1, 2, 3}, new int[] {4, 5, 6}, new int[] {7, 8, 9}
-                        });
+        int[][] matrix = {new int[] {1, 2, 3}, new int[] {4, 5, 6}, new int[] {7, 8, 9}};
 
-        assertThat(actual)
+        transposer.transpose(matrix);
+
+        assertThat(matrix)
                 .isEqualTo(
                         new int[][] {
                             new int[] {1, 4, 7}, new int[] {2, 5, 8}, new int[] {3, 6, 9}

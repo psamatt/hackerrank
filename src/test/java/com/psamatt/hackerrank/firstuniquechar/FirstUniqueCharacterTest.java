@@ -30,6 +30,13 @@ class FirstUniqueCharacterTest {
     }
 
     @Test
+    void shouldFindFirstUniqueCOfReallyLongString() {
+        char actual = firstUniqueCharacter.find("abab".repeat(999999) + "c");
+
+        assertThat(actual).isEqualTo('c');
+    }
+
+    @Test
     void shouldThrowExceptionOnNoUnknownUniqueChar() {
         String s = "abcabc";
 

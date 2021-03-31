@@ -1,26 +1,21 @@
 package com.psamatt.hackerrank.firstuniquechar;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 public class FirstUniqueCharacter {
 
     public char find(String s) {
+        Set<Character> store = new HashSet<>();
         char[] chars = s.toCharArray();
-        Map<Character, Integer> counter = new LinkedHashMap<>();
         for (char c : chars) {
-            for (char iteratingChar : chars) {
-                if (c == iteratingChar) {
-                    Integer existingCounter = counter.getOrDefault(c, 0);
-                    counter.put(c, existingCounter + 1);
-                }
+            if (store.contains(c)) {
+                store.remove(c);
+            } else {
+                store.add(c);
             }
         }
 
-        return counter.entrySet().stream()
-                .filter(item -> item.getValue() == 1)
-                .map(Map.Entry::getKey)
-                .findFirst()
-                .orElseThrow(() -> new NoFirstUniqueCharacterFound(s));
+        return store.stream().findFirst().orElseThrow(() -> new NoFirstUniqueCharacterFound(s));
     }
 }

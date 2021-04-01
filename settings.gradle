@@ -1,2 +1,6 @@
-rootProject.name = 'hackerrank'
+include ':fibonaccinumber'
+include ':firstuniquechar'
+include ':matrixtranspose'
+include ':battleships'
 
+rootProject.name = 'hackerrank'

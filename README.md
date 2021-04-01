@@ -1,6 +1,6 @@
 ### Hackerrank
 
-Number of Hackerrank challenges ive faced over the time, this is my implementations.
+Number of Hackerrank challenges ive faced over the time, these are my implementations.
 
 Using a number of open sourced tools
 - Java 11

@@ -6,46 +6,59 @@ plugins {
 group 'com.psamatt'
 version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
-
 ext {
     lombokVersion = "1.18.18"
     slf4jVersion = "1.7.30"
     junitVersion = "5.7.1"
 }
 
-dependencies {
-    compileOnly "org.projectlombok:lombok:${lombokVersion}"
-    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+allprojects {
+    apply plugin: "idea"
 
-    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
-    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    group rootProject.group
+    version rootProject.version
 
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
-    testImplementation "org.assertj:assertj-core:3.19.0"
-
-    testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
-
-    testCompile "org.mockito:mockito-junit-jupiter:2.28.2"
-    testCompile "org.mockito:mockito-core:2.28.2"
-}
-
-test {
-    useJUnitPlatform()
-}
-
-spotless {
-    java {
-        importOrder()
-        removeUnusedImports()
-        indentWithSpaces(4)
-        googleJavaFormat("1.9").aosp()
+    repositories {
+        mavenCentral()
     }
 }
+
+subprojects {
+    apply plugin: "java-library"
+    apply plugin: "com.diffplug.spotless"
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+
+        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+        testImplementation "org.assertj:assertj-core:3.19.0"
+
+        testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+
+        testCompile "org.mockito:mockito-junit-jupiter:2.28.2"
+        testCompile "org.mockito:mockito-core:2.28.2"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    spotless {
+        java {
+            importOrder()
+            removeUnusedImports()
+            indentWithSpaces(4)
+            googleJavaFormat("1.9").aosp()
+        }
+    }
+}
+
 
 build.dependsOn 'spotlessApply'

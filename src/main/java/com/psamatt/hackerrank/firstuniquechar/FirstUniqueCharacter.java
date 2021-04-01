@@ -1,12 +1,12 @@
 package com.psamatt.hackerrank.firstuniquechar;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class FirstUniqueCharacter {
 
     public char find(String s) {
-        Set<Character> store = new HashSet<>();
+        Set<Character> store = new LinkedHashSet<>();
         char[] chars = s.toCharArray();
         for (char c : chars) {
             if (store.contains(c)) {

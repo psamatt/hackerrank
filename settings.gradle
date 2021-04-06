@@ -2,5 +2,6 @@ include ':fibonaccinumber'
 include ':firstuniquechar'
 include ':matrixtranspose'
 include ':battleships'
+include ':bookshoporder'
 
 rootProject.name = 'hackerrank'
